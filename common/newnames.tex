@@ -45,3 +45,33 @@
 
 % для списка литературы в диссертации и списка чужих работ в автореферате:
 \newcommand{\bibtitlefull}{Список литературы} % (ГОСТ Р 7.0.11-2011, 4)
+%\newcommand\reaction[1][2]{\begin{equation}\ce{#1} \label[2] \end{equation}}
+
+%\newcommand\reactionnonumber[1]%
+%    {\begin{equation*}\ce{#1}\end{equation*}}
+%
+%\newcommand\reaction@[2][]%
+%    {\begin{equation}\ce{#2}%
+%    \ifx\@empty#1\@empty\else\label{#1}\fi%
+%    \reactiontag\end{equation}}
+
+\makeatletter
+\newcounter{reaction}
+%%% >> for article <<%
+\renewcommand\thereaction{Х.\,\arabic{reaction}}
+%%% << for article <<
+%%%>> for report and book >>
+\renewcommand\thereaction{Х.\,\thechapter.\arabic{reaction}}
+\@addtoreset{reaction}{chapter}
+%%% << for report and book <<
+\newcommand\reactiontag%
+    {\refstepcounter{reaction}\tag{\thereaction}}
+\newcommand\reaction@[2][]%
+    {\begin{equation}\ce{#2}%
+    \ifx\@empty#1\@empty\else\label{#1}\fi%
+    \reactiontag\end{equation}}
+\newcommand\reaction@nonumber[1]%
+    {\begin{equation*}\ce{#1}\end{equation*}}
+\newcommand\reaction%
+    {\@ifstar{\reaction@nonumber}{\reaction@}}
+    \makeatother
