@@ -6,7 +6,7 @@
 \makeatletter
 \@ifundefined{c@draft}{
   \newcounter{draft}
-  \setcounter{draft}{0}  % 0 --- чистовик (максимальное соблюдение ГОСТ)
+  \setcounter{draft}{1}  % 0 --- чистовик (максимальное соблюдение ГОСТ)
                          % 1 --- черновик (отклонения от ГОСТ, но быстрая
                          %       сборка итоговых PDF)
 }{}
@@ -58,7 +58,7 @@
 \makeatletter
 \@ifundefined{c@imgprecompile}{
   \newcounter{imgprecompile}
-  \setcounter{imgprecompile}{0}   % 0 --- без предкомпиляции;
+  \setcounter{imgprecompile}{1}   % 0 --- без предкомпиляции;
                                   % 1 --- пользоваться предварительно
                                   %       скомпилированными pdf вместо генерации
                                   %       заново из tikz
